@@ -1,0 +1,54 @@
+<div class="container">
+<div class="row">
+   <nav class="nav navbar bg-light">
+  <a class="nav-link text-black"><h4><i class="bi bi-box-fill"></i> We offer Travel Packages</h4></a>
+  </nav>
+
+    <div *ngFor="let pgks of LoadPKgs" class="card col-sm-4 mb-1 shadow" style="margin-top: 2rem; border:none">
+  <img [src]="pgks.Package_Image" class="card-img-top" alt="..."/>
+  <div class="card-body">
+    <h5 class="card-title">{{ pgks.Travel_Package_Name }}</h5>
+    <p class="card-text">{{pgks.Package_Description}}</p>
+  </div>
+  <ul class="list-group list-group-flush">
+    <li class="list-group-item"> <a href="#" style="text-decoration: none">
+      <i class="bi bi-pin-map-fill"></i> {{ pgks.Location_Name }}</a></li>
+     <li class="list-group-item"><a href="#" style="text-decoration: none" data-bs-toggle="modal" data-bs-target="#exampleModal">
+       <i class="bi bi-airplane-fill">
+       </i> {{ pgks.Airline_name }}</a></li>
+     <li class="list-group-item"><a href="#" style="text-decoration: none">
+       <i class="bi bi-building-fill"></i> {{ pgks.HotelRoom }}</a></li>
+    <li class="list-group-item"><a href="#" style="text-decoration: none">
+      <i class="bi bi-activity"></i> {{ pgks.Activity_Name }}</a></li>
+    <li class="list-group-item"><i class="bi bi-currency-dollar"></i> {{ pgks.Package_Price }} CAD </li>
+
+  </ul>
+  <div class="card-footer">
+    <button type="button" class="btn btn-primary" data-bs-toggle="popover" data-bs-title="Popover title" data-bs-content="And here's some amazing content. It's very engaging. Right?">Book</button>
+  </div>
+</div>
+</div>
+
+  <!-- Button trigger modal -->
+
+
+<!-- Modal -->
+<div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h1 class="modal-title fs-5" id="exampleModalLabel">Modal title</h1>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        ...
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+        <button type="button" class="btn btn-primary">Save changes</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+</div>
