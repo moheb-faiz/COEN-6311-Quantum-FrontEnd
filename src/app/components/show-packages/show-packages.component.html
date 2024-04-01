@@ -97,7 +97,7 @@
   </div>
     <div class="form-group">
     <label for="Location_ID">Location</label>
-      <select id="Location_ID" name="Location_ID" formControlName="Location_ID" class="form-control">
+      <select id="Location_ID" name="Location_ID" formControlName="Location_ID" class="form-control form-select">
 
         <option *ngFor="let location of locationDropdownFill" [value]="location.id">{{location.Location_Name}}</option>
     </select>
@@ -147,10 +147,17 @@
   </div>
 </div>
    <div class="container">
-     <div class="col-12">
-        <button type="button" style="margin-bottom: 1vw" class="btn btn-primary btn-lg rounded-4" (click)="addClick()" data-bs-toggle="modal" data-bs-target="#EditTravelPackages">
- Add New Package
-</button>
+     <div class="d-flex flex-row">
+       <div class="col-6">
+          <input class="form-control float-start" [(ngModel)]="PackageNameFilter" placeholder="Search">
+       </div>
+      <div class="col-6">
+         <button type="button" style="margin-bottom: 1vw" class="btn btn-primary btn-lg rounded-4 float-end" (click)="addClick()"
+                data-bs-toggle="modal" data-bs-target="#EditTravelPackages">
+          Add New Package
+        </button>
+      </div>
+
      </div>
 
 <!--  <button type="button" class="btn btn-primary" routerLink="/add">Add New Package</button>-->
@@ -158,7 +165,7 @@
   <thead>
  <tr>
    <th>ID</th>
-    <th>Travel Package Name</th>
+    <th>Package Name</th>
    <th>Package Price</th>
    <th>Location</th>
    <th>Flight</th>
@@ -169,7 +176,7 @@
  </tr>
   </thead>
   <tbody>
-  <tr *ngFor="let travelpgks of TravelPkgs">
+  <tr *ngFor="let travelpgks of TravelPkgs | filter:PackageNameFilter">
     <td>{{travelpgks.id}}</td>
     <td>{{travelpgks.Travel_Package_Name}}</td>
     <td>{{travelpgks.Package_Price}}</td>

@@ -1,31 +1,40 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import {HttpClientModule} from "@angular/common/http";
-import {ReactiveFormsModule} from "@angular/forms";
-
+import {FormsModule, ReactiveFormsModule} from "@angular/forms";
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
-import { AddPackagesComponent } from './components/add-packages/add-packages.component';
-import { UpdatePackagesComponent } from './components/update-packages/update-packages.component';
 import { ShowPackagesComponent } from './components/show-packages/show-packages.component';
 import { HomeComponent } from './components/home/home.component';
+import {CustomFilterPipe} from "./custom-filter-pipe.pipe";
+import { CustomPackagesComponent } from './components/custom-packages/custom-packages.component';
+import { UserLoginComponent } from './components/user-login/user-login.component';
+import { UserRegisterComponent } from './components/user-register/user-register.component';
+import { BookingsComponent } from './components/bookings/bookings.component';
+import {NgOptimizedImage} from "@angular/common";
 
 @NgModule({
   declarations: [
     AppComponent,
-    AddPackagesComponent,
-    UpdatePackagesComponent,
     ShowPackagesComponent,
-    HomeComponent
+    HomeComponent,
+    CustomFilterPipe,
+    CustomPackagesComponent,
+    UserLoginComponent,
+    UserRegisterComponent,
+    BookingsComponent,
   ],
-  imports: [
-    BrowserModule,
-    AppRoutingModule,
-    NgbModule,
-    HttpClientModule,
-    ReactiveFormsModule
-  ],
+    imports: [
+        BrowserModule,
+        AppRoutingModule,
+        NgbModule,
+        HttpClientModule,
+        ReactiveFormsModule,
+        FormsModule,
+        NgOptimizedImage,
+
+    ],
   providers: [],
   bootstrap: [AppComponent]
 })

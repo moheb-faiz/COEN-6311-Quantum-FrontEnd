@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import TravelPackages from "./TravelPackages";
 import {HttpClient} from "@angular/common/http";
 import {Observable} from "rxjs";
+import BookingFrm from "./BookingFrm";
 
 
 
@@ -67,6 +68,11 @@ export class TravelPackagesService {
 
   deleteTravelPackages(id:number): Observable<TravelPackages>{
     return this.http.delete<TravelPackages>(`${this.url}/travelpackages/${id}`)
+  }
+
+  addBookingData(BookingData:any):Observable<any>{
+    return this.http.post<any>(`${this.url}/bookinginfo/`,BookingData)
+
   }
 
 }

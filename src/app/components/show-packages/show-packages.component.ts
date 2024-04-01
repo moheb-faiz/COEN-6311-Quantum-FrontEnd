@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, numberAttribute, OnInit} from '@angular/core';
 import { TravelPackagesService } from "../../travel-packages.service";
 import { FormControl, FormGroup, Validators } from "@angular/forms";
 import { Router } from "@angular/router";
@@ -10,15 +10,19 @@ import {getLocaleTimeFormat} from "@angular/common";
   styleUrls: ['./show-packages.component.css']
 })
 export class ShowPackagesComponent implements OnInit {
-  travelPkgs: any; // form control data
+  travelPkgs: any; // data to bind controls for update
   data: any;
   id:any
   flightDropdownFill: any[] = [];
   locationDropdownFill: any[] = [];
   activityDropdownFill: any[] = [];
-  TravelPkgs: any | undefined; // table data
+  TravelPkgs: any | undefined; // data for table
   FormTitle:any
   BtnTitle:any
+  PackageNameFilter: any
+  // PackageLocationFilter: any
+  // PackagePriceFilter: number| undefined
+  // PackageNoFilter:any=[];
 
 
   constructor(private travelPackageService: TravelPackagesService, private router: Router) { }
@@ -27,6 +31,7 @@ export class ShowPackagesComponent implements OnInit {
     this.travelPackageService.getVwTravelPackages().subscribe(data => {
       this.TravelPkgs = data;
       console.log(data);
+      // this.PackageNoFilter = data
     });
   }
 
@@ -153,4 +158,23 @@ export class ShowPackagesComponent implements OnInit {
       this.ngOnInit();
     });
   }
+
+  // FilterFn(){
+  //   var PackageNameFilter = this.PackageNameFilter;
+  //   var PackagePriceFilter = this.PackagePriceFilter;
+  //   var PackageLocationFilter = this.PackageLocationFilter;
+  //
+  //   this.TravelPkgs = this.PackageNoFilter.filter(function (el:any){
+  //     return el.Travel_Package_Name.toString().toLowerCase().includes(
+  //       PackageNameFilter.toString().trim().toLowerCase()
+  //     )&&
+  //       el.Package_Price.toString().toLowerCase().includes(
+  //         PackagePriceFilter?.toString()
+  //       )&&
+  //       el.Location_Name.toString().toLowerCase().includes(
+  //         PackageLocationFilter.toString().trim().toLowerCase()
+  //       )
+  //   })
+  //
+  // }
 }
