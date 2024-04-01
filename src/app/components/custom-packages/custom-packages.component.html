@@ -1,0 +1,213 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Bootstrap demo</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+  </head>
+  <body>
+<!--modal-->
+<!-- Button trigger modal -->
+
+
+<!-- Modal add record-->
+<!--<div class="modal fade" id="AddTravelPackages" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">-->
+<!--  <div class="modal-dialog">-->
+<!--    <div class="modal-content">-->
+<!--      <div class="modal-header">-->
+<!--        <h1 class="modal-title fs-5" id="exampleModalLabel">Add New Record</h1>-->
+<!--        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>-->
+<!--      </div>-->
+<!--      <div class="modal-body">-->
+<!--        <form [formGroup]="AddForm" (ngSubmit)="ngSubmitForms()" class="col-sm-10">-->
+<!--  <div class="form-group">-->
+<!--    <label for="AddTravel_Package_Name">Travel Package Name</label>-->
+<!--    <input type="text" class="form-control" id="AddTravel_Package_Name" formControlName="AddTravel_Package_Name">-->
+<!--  </div>-->
+<!--    <div class="form-group">-->
+<!--    <label for="AddLocation_ID">Location</label>-->
+<!--       <select id="AddLocation_ID" name="AddLocation_ID" formControlName="AddLocation_ID" class="form-control">-->
+
+<!--         <option *ngFor="let location of locationDropdownFill"  [value]="location.id">{{location.Location_Name}}</option>-->
+<!--    </select>-->
+<!--&lt;!&ndash;    <input type="text" class="form-control" id="Location_ID" formControlName="Location_ID">&ndash;&gt;-->
+<!--  </div>-->
+<!--    <div class="form-group">-->
+<!--    <label for="AddFlight_ID">Flight</label>-->
+<!--      <select id="AddFlight_ID" name="AddFlight_ID" formControlName="AddFlight_ID" class="form-control">-->
+<!--        <option *ngFor="let flight of flightDropdownFill" [value]="flight.id">{{flight.Flight_Name}}</option>-->
+<!--    </select>-->
+<!--&lt;!&ndash;    <input type="text" class="form-control" id="Flight_ID" formControlName="Flight_ID">&ndash;&gt;-->
+<!--  </div>-->
+
+<!--    <div class="form-group">-->
+<!--    <label for="AddHotel_Rooms_ID">Hotel Room</label>-->
+<!--    <input type="text" class="form-control" id="AddHotel_Rooms_ID" formControlName="AddHotel_Rooms_ID" required>-->
+<!--  </div>-->
+
+<!--    <div class="form-group">-->
+<!--    <label for="Activity_ID">Activity</label>-->
+<!--      <select id="AddActivity_ID" name="AddActivity_ID" formControlName="AddActivity_ID" class="form-control">-->
+<!--        <option *ngFor="let activity of activityDropdownFill" [value]="activity.id">{{activity.Activity_Name}}</option>-->
+<!--    </select>-->
+<!--&lt;!&ndash;    <input type="text" class="form-control" id="Activity_ID" formControlName="Activity_ID">&ndash;&gt;-->
+<!--  </div>-->
+
+<!--      <div class="form-group">-->
+<!--    <label for="AddPackage_Price">Price</label>-->
+<!--        <div class="input-group">-->
+<!--        <span class="input-group-text">CAD</span>-->
+<!--    <input type="text" class="form-control" id="AddPackage_Price" formControlName="AddPackage_Price">-->
+<!--        <span class="input-group-text">.00</span>-->
+<!--          </div>-->
+<!--  </div>-->
+
+<!--     <div class="form-group">-->
+<!--    <label for="AddPackage_Description">Description</label>-->
+<!--    <input type="text" class="form-control" id="AddPackage_Description" formControlName="AddPackage_Description">-->
+
+<!--  </div>-->
+
+<!--  <button type="submit" value="Submit" class="btn btn-primary" data-bs-dismiss="modal">Save</button>-->
+<!--</form>-->
+
+<!--      </div>-->
+<!--      <div class="modal-footer">-->
+<!--        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>-->
+<!--        <button type="button" class="btn btn-primary">Save changes</button>-->
+<!--      </div>-->
+<!--    </div>-->
+<!--  </div>-->
+<!--</div>-->
+<!--Modal edit record-->
+<div class="modal fade" id="EditTravelPackages" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="EditModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h1 class="modal-title fs-5" id="EditModalLabel">{{FormTitle}}</h1>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        <form [formGroup]="form" (ngSubmit)="ngSubmitForms()">
+
+  <div class="form-group">
+    <label for="Travel_Package_Name">Travel Package Name</label>
+    <input type="text" class="form-control" id="Travel_Package_Name" [value]="travelPkgs?.Travel_Package_Name" formControlName="Travel_Package_Name">
+  </div>
+    <div class="form-group">
+    <label for="Location_ID">Location</label>
+      <select id="Location_ID" name="Location_ID" formControlName="Location_ID" class="form-control form-select">
+
+        <option *ngFor="let location of locationDropdownFill" [value]="location.id">{{location.Location_Name}}</option>
+    </select>
+<!--    <input type="number" class="form-control" id="Location_ID" [placeholder]="travelPkgs?.Location_Name" formControlName="Location_ID">-->
+  </div>
+    <div class="form-group">
+    <label for="Flight_ID">Flight</label>
+       <select id="Flight_ID" name="Flight_ID" formControlName="Flight_ID" class="form-select form-control">
+        <option *ngFor="let flights of flightDropdownFill" [value]="flights.id">{{flights.Flight_Name}}</option>
+       </select>
+<!--    <input type="text" class="form-control" id="Flight_ID" [value]="travelPkgs?.Flight_Name"  formControlName="Flight_ID">-->
+  </div>
+
+    <div class="form-group">
+    <label for="Hotel_Rooms_ID">Hotel Room</label>
+    <input type="text" class="form-control" id="Hotel_Rooms_ID" [value]="travelPkgs?.HotelRoom" formControlName="Hotel_Rooms_ID" required>
+  </div>
+
+    <div class="form-group">
+    <label for="Activity_ID">Activity</label>
+       <select id="Activity_ID" name="Activity_ID" formControlName="Activity_ID" class="form-select form-control">
+        <option *ngFor="let activity of activityDropdownFill" [value]="activity.id">{{activity.Activity_Name}}</option>
+       </select>
+<!--    <input type="text" class="form-control" id="Activity_ID" [value]="travelPkgs?.Activity_Name" formControlName="Activity_ID">-->
+  </div>
+
+      <div class="form-group">
+    <label for="Package_Price">Price</label>
+    <input type="text" class="form-control" id="Package_Price" [value]="travelPkgs?.Package_Price" formControlName="Package_Price">
+  </div>
+
+     <div class="form-group">
+    <label for="Package_Description">Details</label>
+    <input type="text" class="form-control" id="Package_Description" [value]="travelPkgs?.Package_Description" formControlName="Package_Description">
+  </div>
+
+          <div class="modal-footer">
+
+        <button type="button" (click)="closeClick()" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+         <button type="submit" id="submit" value="submit" class="btn btn-primary" [disabled]="!form.valid">{{ BtnTitle }}</button>
+      </div>
+
+</form>
+      </div>
+<!-- footer location-->
+    </div>
+  </div>
+</div>
+   <div class="container">
+     <nav class="nav navbar bg-light mb-2">
+  <a class="nav-link text-black"><h4><i class="bi bi-box-fill"></i> My Travel Packages</h4></a>
+  </nav>
+     <div class="d-flex flex-row">
+       <div class="col-6">
+          <input class="form-control float-start" [(ngModel)]="PackageNameFilter" placeholder="Search">
+       </div>
+      <div class="col-6">
+         <button type="button" style="margin-bottom: 1vw" class="btn btn-primary btn-lg rounded-4 float-end" (click)="addClick()"
+                data-bs-toggle="modal" data-bs-target="#EditTravelPackages">
+          Add New Package
+        </button>
+      </div>
+
+     </div>
+
+<!--  <button type="button" class="btn btn-primary" routerLink="/add">Add New Package</button>-->
+<table class="table border">
+  <thead>
+ <tr>
+   <th>ID</th>
+    <th>Package Name</th>
+   <th>Package Price</th>
+   <th>Location</th>
+   <th>Flight</th>
+   <th>Hotel Room</th>
+   <th>Activity</th>
+   <th>Description</th>
+   <th colspan="3">Action</th>
+ </tr>
+  </thead>
+  <tbody>
+  <tr *ngFor="let travelpgks of TravelPkgs | filter:PackageNameFilter">
+    <td>{{travelpgks.id}}</td>
+    <td>{{travelpgks.Travel_Package_Name}}</td>
+    <td>{{travelpgks.Package_Price}}</td>
+   <td>{{travelpgks.Location_Name}}</td>
+    <td>{{travelpgks.Flight_Name}}</td>
+    <td>{{travelpgks.HotelRoom}}</td>
+   <td>{{travelpgks.Activity_Name}}</td>
+    <td>{{travelpgks.Package_Description}}</td>
+    <td>
+      <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#EditTravelPackages" (click)="editClick(travelpgks.id)"><i class="bi bi-pencil-square"></i></button>
+    </td>
+    <td>
+      <button type="button" class="btn btn-danger" (click)="deleteTravelPackage(travelpgks.id)" ><i class="bi bi-trash3-fill"></i></button>
+    </td>
+    <td>
+      <button type="button" class="btn btn-info" [routerLink]="['/booking',travelpgks.id]"><i class="bi bi-book"></i></button>
+    </td>
+  </tr>
+  </tbody>
+</table>
+</div>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
+  </body>
+</html>
+
+
+
+
+
+
