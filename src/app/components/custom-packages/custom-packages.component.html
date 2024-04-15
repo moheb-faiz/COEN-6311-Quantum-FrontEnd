@@ -113,7 +113,10 @@
 
     <div class="form-group">
     <label for="Hotel_Rooms_ID">Hotel Room</label>
-    <input type="text" class="form-control" id="Hotel_Rooms_ID" [value]="travelPkgs?.HotelRoom" formControlName="Hotel_Rooms_ID" required>
+       <select id="Hotel_Rooms_ID" name="Hotel_Rooms_ID" formControlName="Hotel_Rooms_ID" class="form-select form-control">
+        <option *ngFor="let hotelroom of hotelRoomDropDownFill" [value]="hotelroom.id">{{hotelroom.HotelRoom}}</option>
+       </select>
+<!--    <input type="text" class="form-control" id="Hotel_Rooms_ID" [value]="travelPkgs?.HotelRoom" formControlName="Hotel_Rooms_ID" required>-->
   </div>
 
     <div class="form-group">
@@ -172,6 +175,7 @@
    <th>Package Price</th>
    <th>Location</th>
    <th>Flight</th>
+    <th>Date</th>
    <th>Hotel Room</th>
    <th>Activity</th>
    <th>Description</th>
@@ -185,6 +189,7 @@
     <td>{{travelpgks.Package_Price}}</td>
    <td>{{travelpgks.Location_Name}}</td>
     <td>{{travelpgks.Flight_Name}}</td>
+    <td>{{travelpgks.Departure_Date}}</td>
     <td>{{travelpgks.HotelRoom}}</td>
    <td>{{travelpgks.Activity_Name}}</td>
     <td>{{travelpgks.Package_Description}}</td>
@@ -200,6 +205,57 @@
   </tr>
   </tbody>
 </table>
+
+     <div class="accordion accordion-flush" id="accordionFlushExample">
+  <div class="accordion-item">
+    <h5 class="accordion-header">
+      <button class="accordion-button collapsed" (click)="LoadBookingInfo()" type="button" data-bs-toggle="collapse" data-bs-target="#flush-collapseOne" aria-expanded="false" aria-controls="flush-collapseOne">
+       My Booking
+      </button>
+    </h5>
+    <div id="flush-collapseOne" class="accordion-collapse collapse" data-bs-parent="#accordionFlushExample">
+      <div class="accordion-body">
+          <table class="table border">
+  <thead>
+ <tr>
+   <th>ID</th>
+   <th>Package Name</th>
+   <th>Location</th>
+    <th>First Name</th>
+   <th>Last Name</th>
+   <th>Email</th>
+   <th>Total Price</th>
+   <th>Booking Date</th>
+   <th colspan="3">Action</th>
+ </tr>
+  </thead>
+  <tbody>
+  <tr *ngFor="let bookinginfo of BookingInfo | filter:PackageNameFilter">
+    <td>{{bookinginfo.id}}</td>
+    <td>{{bookinginfo.Travel_Package_Name}}</td>
+   <td>{{bookinginfo.Location_Name}}</td>
+    <td>{{bookinginfo.First_Name}}</td>
+    <td>{{bookinginfo.Last_Name}}</td>
+   <td>{{bookinginfo.Email}}</td>
+    <td>{{bookinginfo.Payment_Amount}}</td>
+    <td>{{bookinginfo.Booking_Date}}</td>
+<!--    <td>-->
+<!--      <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#EditTravelPackages" ><i class="bi bi-pencil-square"></i></button>-->
+<!--    </td>-->
+    <td>
+      <button type="button" class="btn btn-danger" ><i class="bi bi-trash3-fill"></i></button>
+    </td>
+<!--    <td>-->
+<!--      <button type="button" class="btn btn-info"><i class="bi bi-book"></i></button>-->
+<!--    </td>-->
+  </tr>
+  </tbody>
+</table>
+      </div>
+    </div>
+  </div>
+</div>
+
 </div>
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>

@@ -31,9 +31,6 @@ export class BookingsComponent implements OnInit{
        this.Customer_ID =1
        this.Booking_Date = new Date().toISOString().slice(0,10)
 
-
-
-
     })
 
   }

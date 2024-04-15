@@ -48,7 +48,14 @@ export class TravelPackagesService {
 
   getActivityDropdown():Observable<any[]>{
   return this.http.get<any[]>(`${this.url}/activities/`)
+  }
 
+  getHotelRoomDropdown():Observable<any[]> {
+    return this.http.get<any[]>(`${this.url}/vwhotelroom/`)
+  }
+
+  getVwBookingInfo():Observable<any[]> {
+    return this.http.get<any[]>(`${this.url}/vwbookinginfo/`)
   }
 
   getTravelPackagesByID(id:number):Observable<TravelPackages>{

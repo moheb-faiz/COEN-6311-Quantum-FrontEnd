@@ -16,10 +16,12 @@ export class CustomPackagesComponent implements OnInit{
   flightDropdownFill: any[] = [];
   locationDropdownFill: any[] = [];
   activityDropdownFill: any[] = [];
+  hotelRoomDropDownFill: any[]=[];
   TravelPkgs: any | undefined; // data for table
   FormTitle:any
   BtnTitle:any
   PackageNameFilter: any
+  BookingInfo: any
   // PackageLocationFilter: any
   // PackagePriceFilter: number| undefined
   // PackageNoFilter:any=[];
@@ -57,7 +59,7 @@ export class CustomPackagesComponent implements OnInit{
           Travel_Package_Name: this.travelPkgs.Travel_Package_Name,
           Location_ID: this.travelPkgs.LocationID,
           Flight_ID: this.travelPkgs.FlightID,
-          Hotel_Rooms_ID: this.travelPkgs.HotelRoom,
+          Hotel_Rooms_ID: this.travelPkgs.HotelRoomID,
           Activity_ID: this.travelPkgs.ActivityID,
           Package_Price: this.travelPkgs.Package_Price,
           Package_Description: this.travelPkgs.Package_Description
@@ -80,6 +82,11 @@ export class CustomPackagesComponent implements OnInit{
     // Activities Dropdown Fill
     this.travelPackageService.getActivityDropdown().subscribe(data => {
       this.activityDropdownFill = data;
+      console.log(data);
+    });
+
+    this.travelPackageService.getHotelRoomDropdown().subscribe(data => {
+      this.hotelRoomDropDownFill = data;
       console.log(data);
     });
   }
@@ -139,6 +146,11 @@ export class CustomPackagesComponent implements OnInit{
       this.activityDropdownFill = data;
       console.log(data);
     });
+
+    this.travelPackageService.getHotelRoomDropdown().subscribe(data => {
+      this.hotelRoomDropDownFill = data;
+      console.log(data);
+    });
   }
   closeClick(){
     this.form.reset()
@@ -158,5 +170,17 @@ export class CustomPackagesComponent implements OnInit{
       this.ngOnInit();
     });
   }
+
+ LoadBookingInfo(): void{
+    this.travelPackageService.getVwBookingInfo().subscribe(data=>{
+      this.BookingInfo = data
+      console.log(data)
+    })
+
+ }
+
+ CancelBooking(): void{
+
+ }
 
 }
