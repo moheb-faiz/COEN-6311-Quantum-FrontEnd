@@ -2,6 +2,7 @@ import {Component, numberAttribute, OnInit} from '@angular/core';
 import { TravelPackagesService } from "../../travel-packages.service";
 import { FormControl, FormGroup, Validators } from "@angular/forms";
 import { Router } from "@angular/router";
+import {ReactiveFormsModule} from "@angular/forms";
 import {getLocaleTimeFormat} from "@angular/common";
 
 @Component({
@@ -21,6 +22,7 @@ export class ShowPackagesComponent implements OnInit {
   FormTitle:any
   BtnTitle:any
   PackageNameFilter: any
+  BookingInfo: any
   // PackageLocationFilter: any
   // PackagePriceFilter: number| undefined
   // PackageNoFilter:any=[];
@@ -61,6 +63,7 @@ export class ShowPackagesComponent implements OnInit {
           Hotel_Rooms_ID: this.travelPkgs.HotelRoomID,
           Activity_ID: this.travelPkgs.ActivityID,
           Package_Price: this.travelPkgs.Package_Price,
+          Package_Image: this.travelPkgs.Package_Image,
           Package_Description: this.travelPkgs.Package_Description
         });
       }
@@ -97,6 +100,7 @@ export class ShowPackagesComponent implements OnInit {
     Hotel_Rooms_ID: new FormControl('', Validators.required),
     Activity_ID: new FormControl('', Validators.required),
     Package_Price: new FormControl('', Validators.required),
+    Package_Image: new FormControl('', Validators.required),
     Package_Description: new FormControl('', Validators.required)
   });
 
@@ -169,23 +173,12 @@ export class ShowPackagesComponent implements OnInit {
       this.ngOnInit();
     });
   }
+LoadBookingInfo(): void{
+    this.travelPackageService.getVwBookingInfo().subscribe(data=>{
+      this.BookingInfo = data
+      console.log(data)
+    })
 
-  // FilterFn(){
-  //   var PackageNameFilter = this.PackageNameFilter;
-  //   var PackagePriceFilter = this.PackagePriceFilter;
-  //   var PackageLocationFilter = this.PackageLocationFilter;
-  //
-  //   this.TravelPkgs = this.PackageNoFilter.filter(function (el:any){
-  //     return el.Travel_Package_Name.toString().toLowerCase().includes(
-  //       PackageNameFilter.toString().trim().toLowerCase()
-  //     )&&
-  //       el.Package_Price.toString().toLowerCase().includes(
-  //         PackagePriceFilter?.toString()
-  //       )&&
-  //       el.Location_Name.toString().toLowerCase().includes(
-  //         PackageLocationFilter.toString().trim().toLowerCase()
-  //       )
-  //   })
-  //
-  // }
+ }
+
 }

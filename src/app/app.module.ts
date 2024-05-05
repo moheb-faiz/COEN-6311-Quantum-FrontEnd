@@ -13,6 +13,8 @@ import { UserLoginComponent } from './components/user-login/user-login.component
 import { UserRegisterComponent } from './components/user-register/user-register.component';
 import { BookingsComponent } from './components/bookings/bookings.component';
 import {NgOptimizedImage} from "@angular/common";
+import { CustomBookingsComponent } from './components/custom-bookings/custom-bookings.component';
+import { NavComponent } from './components/nav/nav.component';
 
 @NgModule({
   declarations: [
@@ -24,6 +26,8 @@ import {NgOptimizedImage} from "@angular/common";
     UserLoginComponent,
     UserRegisterComponent,
     BookingsComponent,
+    CustomBookingsComponent,
+    NavComponent,
   ],
     imports: [
         BrowserModule,

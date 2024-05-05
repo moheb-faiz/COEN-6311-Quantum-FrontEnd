@@ -1,6 +1,7 @@
 import {Component, OnInit} from '@angular/core';
 import {TravelPackagesService} from "../../travel-packages.service";
 import {ActivatedRoute, Params} from "@angular/router";
+import {ReactiveFormsModule} from "@angular/forms";
 
 @Component({
   selector: 'app-bookings',
@@ -24,11 +25,12 @@ export class BookingsComponent implements OnInit{
     this.router.params.subscribe((params: Params)=>{
       this.id = params['id']
     })
+
      this.LoadTravelPakcages.getVwTravelPackagesByID(this.id).subscribe(data=>{
       this.LoadPKgs = data
          console.log(data)
        this.Package_ID=this.LoadPKgs.id
-       this.Customer_ID =1
+       this.Customer_ID =4
        this.Booking_Date = new Date().toISOString().slice(0,10)
 
     })

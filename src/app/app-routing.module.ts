@@ -7,6 +7,8 @@ import {CustomPackagesComponent} from "./components/custom-packages/custom-packa
 import {UserLoginComponent} from "./components/user-login/user-login.component";
 import {UserRegisterComponent} from "./components/user-register/user-register.component";
 import {BookingsComponent} from "./components/bookings/bookings.component";
+import {CustomBookingsComponent} from "./components/custom-bookings/custom-bookings.component";
+import {NavComponent} from "./components/nav/nav.component";
 
 
 const routes: Routes = [
@@ -16,6 +18,8 @@ const routes: Routes = [
   {path:'show', component: ShowPackagesComponent},
   {path:'custom', component: CustomPackagesComponent},
   {path:'booking/:id', component: BookingsComponent},
+  {path:'custom-booking/:id', component: CustomBookingsComponent},
+  {path:'navigation', component:NavComponent}
 
 
 ];

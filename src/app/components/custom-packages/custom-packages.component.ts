@@ -2,6 +2,7 @@ import {Component, numberAttribute, OnInit} from '@angular/core';
 import { TravelPackagesService } from "../../travel-packages.service";
 import { FormControl, FormGroup, Validators } from "@angular/forms";
 import { Router } from "@angular/router";
+import {ReactiveFormsModule} from "@angular/forms";
 import {getLocaleTimeFormat} from "@angular/common";
 
 @Component({
@@ -30,7 +31,7 @@ export class CustomPackagesComponent implements OnInit{
   constructor(private travelPackageService: TravelPackagesService, private router: Router) { }
 
   ngOnInit(): void {
-    this.travelPackageService.getVwTravelPackages().subscribe(data => {
+    this.travelPackageService.getVwCustomTravelPackages().subscribe(data => {
       this.TravelPkgs = data;
       console.log(data);
       // this.PackageNoFilter = data
@@ -39,7 +40,7 @@ export class CustomPackagesComponent implements OnInit{
 
   deleteTravelPackage(id: number): void {
     if (confirm('Are you sure?')) {
-      this.travelPackageService.deleteTravelPackages(id).subscribe(data => {
+      this.travelPackageService.deleteCustomTravelPackages(id).subscribe(data => {
         console.log(data);
         this.ngOnInit();
       });
@@ -50,13 +51,13 @@ export class CustomPackagesComponent implements OnInit{
     this.FormTitle='Edit Record'
     this.BtnTitle='Update'
     this.id = id
-    this.travelPackageService.getVwTravelPackagesByID(this.id).subscribe(data => {
+    this.travelPackageService.getVwCustomTravelPackagesByID(this.id).subscribe(data => {
       if (data) {
         this.travelPkgs = data;
         console.log(data);
 
         this.form.patchValue({
-          Travel_Package_Name: this.travelPkgs.Travel_Package_Name,
+          Custom_Package_Name: this.travelPkgs.Custom_Package_Name,
           Location_ID: this.travelPkgs.LocationID,
           Flight_ID: this.travelPkgs.FlightID,
           Hotel_Rooms_ID: this.travelPkgs.HotelRoomID,
@@ -92,7 +93,7 @@ export class CustomPackagesComponent implements OnInit{
   }
 
   form = new FormGroup({
-    Travel_Package_Name: new FormControl('', Validators.required),
+    Custom_Package_Name: new FormControl('', Validators.required),
     Location_ID: new FormControl('', Validators.required),
     Flight_ID: new FormControl('', Validators.required),
     Hotel_Rooms_ID: new FormControl('', Validators.required),
@@ -112,9 +113,9 @@ export class CustomPackagesComponent implements OnInit{
     }
 
   }
-  updateTravelPackages(): void {
+   updateTravelPackages(): void {
     this.data = this.form.value;
-    this.travelPackageService.updateTravelPackages(this.travelPkgs?.id, this.data).subscribe(data => {
+    this.travelPackageService.updateCustomTravelPackages(this.travelPkgs?.id, this.data).subscribe(data => {
       if (data) {
         console.log(data);
         alert('Record updated successfully!');
@@ -164,7 +165,7 @@ export class CustomPackagesComponent implements OnInit{
       return;
     }
     this.data = this.form.value;
-    this.travelPackageService.addTravelPackages(this.data).subscribe(data => {
+    this.travelPackageService.addCustomTravelPackages(this.data).subscribe(data => {
       console.log(data);
       alert('Record added successfully.')
       this.ngOnInit();
@@ -172,7 +173,7 @@ export class CustomPackagesComponent implements OnInit{
   }
 
  LoadBookingInfo(): void{
-    this.travelPackageService.getVwBookingInfo().subscribe(data=>{
+    this.travelPackageService.getVwCustomBooking().subscribe(data=>{
       this.BookingInfo = data
       console.log(data)
     })

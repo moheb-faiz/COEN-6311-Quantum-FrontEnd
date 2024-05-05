@@ -3,6 +3,7 @@ import TravelPackages from "./TravelPackages";
 import {HttpClient} from "@angular/common/http";
 import {Observable} from "rxjs";
 import BookingFrm from "./BookingFrm";
+import CustomTravelPackage from "./customTravelPackage";
 
 
 
@@ -10,7 +11,7 @@ import BookingFrm from "./BookingFrm";
   providedIn: 'root'
 })
 export class TravelPackagesService {
-  private url: string ="http://127.0.0.1:8000"
+  private url: string ="http://localhost:8000"
 
   constructor(private http:HttpClient) { }
 
@@ -28,6 +29,14 @@ export class TravelPackagesService {
 
   }
 
+  getVwCustomTravelPackages():Observable<any[]>{
+    return this.http.get<any[]>(`${this.url}/vwcustomtravelpackages/`)
+  }
+
+  getVwCustomTravelPackagesByID(id:number):Observable<any>{
+    return this.http.get<any>(`${this.url}/vwcustomtravelpackages/${id}`)
+
+  }
   getFlightDropdown():Observable<any[]>{
     return this.http.get<any[]>(`${this.url}/flightdropdown/`)
 
@@ -58,6 +67,10 @@ export class TravelPackagesService {
     return this.http.get<any[]>(`${this.url}/vwbookinginfo/`)
   }
 
+   getVwCustomBooking():Observable<any[]> {
+    return this.http.get<any[]>(`${this.url}/vwcustombooking/`)
+  }
+
   getTravelPackagesByID(id:number):Observable<TravelPackages>{
     return this.http.get<TravelPackages>(`${this.url}/travelpackages/${id}`)
 
@@ -77,9 +90,46 @@ export class TravelPackagesService {
     return this.http.delete<TravelPackages>(`${this.url}/travelpackages/${id}`)
   }
 
+  addCustomTravelPackages(CustomPackage: CustomTravelPackage):Observable<CustomTravelPackage>{
+    return this.http.post<CustomTravelPackage>(`${this.url}/customtravelpackages/`,CustomPackage)
+
+  }
+
+  updateCustomTravelPackages(id:number, CustomPackage: CustomTravelPackage):Observable<CustomTravelPackage>{
+    return this.http.put<CustomTravelPackage>(`${this.url}/customtravelpackages/${id}/`,CustomPackage)
+
+  }
+
+  deleteCustomTravelPackages(id:number): Observable<CustomTravelPackage>{
+    return this.http.delete<CustomTravelPackage>(`${this.url}/customtravelpackages/${id}`)
+  }
+
+
   addBookingData(BookingData:any):Observable<any>{
     return this.http.post<any>(`${this.url}/bookinginfo/`,BookingData)
 
   }
+
+  RegUsers(RegUser:any):Observable<any>{
+    return this.http.post<any>(`${this.url}/register/`,RegUser)
+
+  }
+
+  UserLogin(UsersLogin:any):Observable<any>{
+    return this.http.post<any>(`${this.url}/login/`,UsersLogin, {withCredentials: true})
+
+  }
+
+getUsers():Observable<any[]> {
+    return this.http.get<any[]>(`${this.url}/user/`, {withCredentials:true})
+  }
+
+LogoutUser(logoutuser:any):Observable<any>{
+    return this.http.post<any>(`${this.url}/logout/`,logoutuser, {withCredentials: true})
+
+  }
+
+
+
 
 }

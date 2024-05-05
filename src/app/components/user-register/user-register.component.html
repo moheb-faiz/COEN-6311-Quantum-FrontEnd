@@ -1,3 +1,4 @@
+<app-nav></app-nav>
 <div class="container">
 <div class="row justify-content-center">
 <div class="col-md-6 text-center mb-5">
@@ -6,30 +7,33 @@
 </div>
 <div class="row justify-content-center">
 <div class="col-md-5">
-<form action="#" class="signin-form">
+
+<form [formGroup]="form" (submit)="UserRegistration()" class="signin-form">
   <div class="form-group mb-3">
 <label class="label" for="FirstName">First Name</label>
-<input type="text" id="FirstName" class="form-control" placeholder="First Name" required="">
+<input type="text" id="FirstName" formControlName="first_name" class="form-control" placeholder="First Name" required="">
 </div>
   <div class="form-group mb-3">
 <label class="label" for="LastName">Last Name</label>
-<input type="text" id="LastName" class="form-control" placeholder="Last Name" required="">
+<input type="text" id="LastName" formControlName="last_name" class="form-control" placeholder="Last Name" required="">
 </div>
+
+  <div class="form-group mb-3">
+<label class="label" for="UserName">User Name</label>
+<input type="text" id="UserName" formControlName="name" class="form-control" placeholder="Last Name" required="">
+</div>
+
   <div class="form-group mb-3">
 <label class="label" for="Email">Email</label>
-<input type="email" id="Email" class="form-control" placeholder="Email" required="">
+<input type="email" id="Email" formControlName="email" class="form-control" placeholder="Email" required="">
 </div>
 
 <div class="form-group mb-3">
-<label class="label" for="username">User Name</label>
-<input type="text" id="username" class="form-control" placeholder="User name" required="">
-</div>
-<div class="form-group mb-3">
 <label class="label" for="password">Password</label>
-<input type="password" id="password" class="form-control" placeholder="Password" required="">
+<input type="password" id="password" formControlName="password" class="form-control" placeholder="Password" required="">
 </div>
 <div class="form-group">
-<button type="submit" class="form-control btn btn-primary rounded submit px-3">Sign In</button>
+<button type="submit" class="form-control btn btn-primary rounded submit px-3">Register</button>
 </div>
 
 </form>
